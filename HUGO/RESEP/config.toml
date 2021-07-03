@@ -1,0 +1,130 @@
+baseURL = "https://cookrecipes.org/"
+languageCode = "en-us"
+title = "Delicious & Tasty Recipes"
+theme = "themeresep"
+sectionPagesMenu = "main"
+rssLimit = 10
+
+[services.rss]
+  limit = 10
+  
+[taxonomies]
+tag = ""
+category = ""
+
+[permalinks]
+post = ":slug"
+
+[params]
+description = "Find and Discover 90.000++ Best Food & Drink Recipes Ideas Here!"
+topdescription = "A Collection of All the Best Recipes Online!"
+toptitle = "Delicious & Tasty Recipes"
+logo = "img/logo.svg"
+contentBackgroundColor = "#fff"
+contentLinkColor = "#007bff"
+contentLinkHoverColor = "#0056b3"
+contentTextColor = "#212529"
+cookieConsent = false
+customCodeStyle = true
+customDateFormat = "Jan 2, 2006"
+faviconMsApplicationTileColor = "#066046"
+faviconSafariPinnedTabColor = "#066046"
+faviconThemeColor = "#066046"
+googleAnalytics = "G-DT7P2MZNC6"
+navbarBackgroundColor = "#066046"
+navbarLinkColor = "rgba(255, 255, 255, 0.75)"
+navbarLinkHoverColor = "rgba(255, 255, 255, 1)"
+showPostSummary = false
+wrapperMaxWidth = ""
+mainSections = ["recipes"]
+
+[menu]
+[[menu.nav]]
+name = "Contact"
+url = "/pages/contact"
+weight = 1
+[[menu.nav]]
+name = "Copyright"
+url = "/pages/copyright"
+weight = 2
+[[menu.nav]]
+name = "DMCA"
+url = "/pages/dmca"
+weight = 3
+[[menu.nav]]
+name = "Privacy Policy"
+url = "/pages/privacy-policy"
+weight = 4
+
+[author]
+name = "Rika Nita"
+homepage = "https://cookrecipes.org/"
+bio = "God Food Lover"
+image = "https://i.pinimg.com/474x/a5/4e/b7/a54eb7ed287d727c786fa33bace37c35.jpg"
+
+[markup]
+defaultMarkdownHandler = "goldmark"
+[markup.goldmark]
+[markup.goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+[markup.goldmark.parser]
+attribute = true
+autoHeadingID = true
+[markup.goldmark.renderer]
+hardWraps = false
+unsafe = true
+xHTML = false
+[markup.highlight]
+codeFences = true
+hl_Lines = ""
+lineNoStart = 1
+lineNos = false
+lineNumbersInTable = true
+noClasses = true
+style = "monokai"
+tabWidth = 4
+[markup.tableOfContents]
+endLevel = 6
+ordered = false
+startLevel = 1
+
+[minify]
+  disableCSS = false
+  disableHTML = false
+  disableJS = true
+  disableJSON = true
+  disableSVG = false
+  disableXML = false
+  minifyOutput = true
+  [minify.tdewolff]
+    [minify.tdewolff.css]
+      keepCSS2 = true
+      precision = 0
+    [minify.tdewolff.html]
+      keepComments = true
+      keepConditionalComments = true
+      keepDefaultAttrVals = true
+      keepDocumentTags = true
+      keepEndTags = true
+      keepQuotes = false
+      keepWhitespace = false
+    [minify.tdewolff.js]
+      keepVarNames = false
+      precision = 0
+    [minify.tdewolff.json]
+      precision = 0
+    [minify.tdewolff.svg]
+      precision = 0
+    [minify.tdewolff.xml]
+      keepWhitespace = false
+
+[outputFormats]
+  [outputFormats.RSS]
+    mediatype = "application/rss"
+    baseName = "rss"

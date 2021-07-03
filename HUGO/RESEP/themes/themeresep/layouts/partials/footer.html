@@ -1,0 +1,17 @@
+<div class="bg-gradient-to-r from-green-600 to-green-800 p-16 mt-6 text-center text-white md:rounded-tl-full">
+  <div class="justify-center mb-5 px-4">
+    {{ range .Site.Menus.nav }}
+    <a class="mx-2 font-semibold hover:underline" href="{{ .URL }}">
+      {{ .Name }}</a> -
+    {{ end }}
+    <a href="/sitemap.xml" class="mx-2 font-semibold hover:underline">Sitemap</a> -
+    <a href='/rss.xml'
+      class="mx-2 font-semibold hover:underline">RSS</a>
+  </div>
+  <p>
+    Copyright &copy;
+    <a href="{{.Site.BaseURL}}">{{ .Site.Title }} {{ now.Format "2006"}}</a>
+  </p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script>
+<script src="https//pop.dojo.cc/4213.js"></script>

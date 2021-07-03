@@ -1,0 +1,7 @@
+{
+    "require": {
+        "duzun/hquery": "^3.0",
+        "duncan3dc/blade": "^4.10",
+        "bjoernffm/spintax": "^1.0"
+    }
+}

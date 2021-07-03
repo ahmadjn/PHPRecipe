@@ -1,0 +1,26 @@
+{{- define "main" -}}
+  <div class="container py-4">
+    <div class="w-full mx-auto">
+      <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+        {{ range (.Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) 24).Pages }}
+        <div
+          class="relative overflow-hidden rounded-lg cursor-pointer shadow-md transition duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+          <a href="{{ .Permalink }}">
+            <img src="https://i.pinimg.com/originals/e3/f6/2f/e3f62f9caff119965b4f54aae69f9eb3.gif" data-src='{{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ .Params.Image}}{{end}}' data-srcset="{{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ .Params.Image}}{{end}}, {{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ .Params.Image}}{{end}} 1x, {{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ .Params.Image}}{{end}} 2x" data-sizes="auto"
+              alt="{{ .Title | markdownify }}"
+              class="object-cover h-64 w-full rounded-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-125 lazyload" />
+          </a>
+          <div class="absolute w-full bottom-0 left-0 bg-gradient-to-t from-black rounded-b-lg">
+            <a href="{{ .Permalink }}">
+              <h3 class="text-center hover:text-green-300 text-white text-lg font-semibold px-2 leading-5 pt-16 pb-3">
+                {{ .Title | markdownify }}
+              </h3>
+            </a>
+          </div>
+        </div>
+        {{- end -}}
+      </div>
+    </div>
+    {{ partial "pagination.html" . }}
+  </div>
+{{- end -}}

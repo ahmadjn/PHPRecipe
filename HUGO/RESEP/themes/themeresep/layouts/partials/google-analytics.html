@@ -1,0 +1,4 @@
+{{ if not .Site.IsServer }}
+  {{ with .Site.Params.googleAnalytics }}
+  {{ end }}
+{{ end }}

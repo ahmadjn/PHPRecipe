@@ -1,0 +1,23 @@
+{{ if ne .Section "pages" }}{{ partial "ads-300.html" . }}{{ end }}
+<div class="text-left text-white bg-orens -ml-3 mt-4 px-4 py-1 text-lg font-semibold leading-loose rounded-r-2xl">
+	<h3>Popular Recipes :</h3>
+</div>
+
+{{ range first 6 (shuffle (where (where site.RegularPages "Type" "in" site.Params.mainSections) "Title" "!=" .Title )) }}
+<div
+	class="-ml-3 mb-1 border-2 bg-white rounded-r-2xl overflow-hidden shadow-md transition duration-500 ease-in-out transform hover:translate-x-2 hover:scale-110">
+	<a href="{{ .Permalink }}">
+		<div class="relative h-40 overflow-hidden">
+			<img class="object-cover h-56 w-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-125"
+				src="{{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ .Params.Image}}{{end}}"
+				alt="{{ .Title | markdownify }}">
+			<div class="absolute bottom-0 left-0 hover:bg-merah hover:bg-opacity-75">
+				<h3
+					class="text-black text-sm text-opacity-0 hover:text-opacity-100 pr-2 pt-2 pb-2 pl-8 hover:font-bold hover:text-white overflow-hidden">
+					{{ .Title | markdownify }}</h3>
+			</div>
+
+		</div>
+	</a>
+</div>
+{{- end -}}

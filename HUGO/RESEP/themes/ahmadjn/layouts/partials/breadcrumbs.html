@@ -1,0 +1,25 @@
+<div class="text-sm text-left mb-2">
+    <a href="/">Home</a> / <a href="/{{ .Section }}">{{ .Section | title }}</a> / <a
+        href="{{ .Permalink }}">{{ .Title | title }}</a>
+</div>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Recipes",
+            "item": "{{.Site.BaseURL}}"
+        }, {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ .Section | title }}",
+            "item": "{{.Site.BaseURL}}{{ .Section }}"
+        }, {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ .Title | title }}"
+        }]
+    }
+</script>

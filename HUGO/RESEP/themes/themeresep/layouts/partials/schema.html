@@ -1,0 +1,64 @@
+{{ $author :=  or (.Params.author) (.Site.Author.name) }}
+{{ $org_name :=  .Site.Title }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org/", 
+    "@type": "Recipe", 
+    "name": "{{ .Title | safeJS }}",
+    "headline": "{{ .Title | safeJS }}",
+    "image": "{{ .Params.image }}",
+    "description": "{{ .Params.description }}",
+    "keywords": "{{ .Params.katakunci }}",
+	"recipeCuisine": "{{ .Params.recipecuisine }}",
+	"prepTime": "{{ .Params.preptime }}",
+    "cookTime": "{{ .Params.cooktime }}",
+	"recipeYield": "{{ .Params.recipeyield }}",
+    "recipeCategory": [ {{ range $index, $category := .Params.recipecategory }}{{ if $index }}, {{ end }}"{{ $category }}" {{ end }} ],
+	"datePublished": "{{ dateFormat "2006-01-02" .Date }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ $author }}"
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ .Params.ratingvalue }}",
+        "reviewCount": "{{ .Params.reviewcount }}"
+    },
+	"nutrition": {
+        "@type": "NutritionInformation",
+        "calories": "{{ .Params.nutrition }}"
+    },
+    "recipeIngredient": [ {{ range $index, $ingredients := .Params.recipeingredient }}{{ if $index }}, {{ end }}"{{ $ingredients }}" {{ end }} ],
+    "recipeInstructions": [{{ range $index, $instructions := .Params.recipeinstructions }}{{ if $index }},
+        {{ end }}{
+        "@type": "HowToStep",
+        "text": "{{ $instructions }}"
+        }{{ end }}]
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https:\/\/schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "name": "Home",
+        "item": "{{ .Site.BaseURL }}",
+        "@type": "ListItem",
+        "position": 1
+      },
+      {
+        "name": "Resep {{ .Section | title }}",
+        "item": "{{ .Site.BaseURL }}{{ .Section }}",
+        "@type": "ListItem",
+        "position": 2
+      },
+      {
+        "name": "{{ .Title | safeJS }}",
+		"item": "{{ .Permalink }}",
+        "@type": "ListItem",
+        "position": 3
+      }
+    ]
+ }
+</script>

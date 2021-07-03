@@ -1,0 +1,4 @@
+{{ range .Params.tags }}
+{{ $href := print (absURL "tags/") (urlize .) }}
+<a class="text-hijau" href="#">#{{ . }}</a>
+{{ end }}

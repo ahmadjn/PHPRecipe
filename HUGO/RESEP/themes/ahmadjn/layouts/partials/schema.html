@@ -1,0 +1,52 @@
+{{ if .IsHome -}}
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "{{ .Site.Title }}",
+    "url": "{{ .Site.BaseURL }}",
+    "description": "{{ .Site.Params.description }}",
+    "thumbnailUrl": "{{ .Site.Params.Logo | absURL }}",
+    "license": "{{ .Site.Params.Copyright }}"
+}
+</script>
+{{ else if .IsPage }}
+{{ $author :=  or (.Params.author) (.Site.Author.name) }}
+{{ $org_name :=  .Site.Title }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org/", 
+    "@type": "Recipe", 
+    "name": "{{ .Title | safeJS }}",
+    "headline": "{{ .Title | safeJS }}",
+    "image": "{{ .Params.image }}",
+    "description": "{{ .Params.description }}",
+    "keywords": "{{ .Params.katakunci }}",
+	"recipeCuisine": "{{ .Params.recipecuisine }}",
+	"prepTime": "{{ .Params.preptime }}",
+    "cookTime": "{{ .Params.cooktime }}",
+	"recipeYield": "{{ .Params.recipeyield }}",
+    "recipeCategory": "{{ .Params.recipecategory }}",
+	"datePublished": "{{ dateFormat "2006-01-02" .Date }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ $author }}"
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ .Params.ratingvalue }}",
+        "reviewCount": "{{ .Params.reviewcount }}"
+    },
+	"nutrition": {
+        "@type": "NutritionInformation",
+        "calories": "{{ .Params.nutrition }}"
+    },
+    "recipeIngredient": [ {{ range $index, $ingredients := .Params.recipeingredient }}{{ if $index }}, {{ end }}"{{ $ingredients }}" {{ end }} ],
+    "recipeInstructions": [{{ range $index, $instructions := .Params.recipeinstructions }}{{ if $index }},
+        {{ end }}{
+        "@type": "HowToStep",
+        "text": "{{ $instructions }}"
+        }{{ end }}]
+}
+</script>
+{{ end }}

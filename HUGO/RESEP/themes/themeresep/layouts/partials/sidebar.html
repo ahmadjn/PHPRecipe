@@ -1,0 +1,15 @@
+<div class="w-full bg-gray-300 p-4 shadow-inner rounded-md">
+        <h3 class="text-center text-lg md:text-2xl font-bold text-yellow-700 mb-2">
+          ~ Kategori Resep ~
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {{ range site.Params.mainSections }}
+          <a href="/{{ . | singularize | lower }}">
+            <div
+              class="bg-yellow-600 rounded-full p-2 text-center text-lg font-semibold shadow-md hover:shadow-lg text-white border-2 border-white transition duration-400 ease-in-out transform hover:translate-y-1 cursor-pointer">
+              <h4>{{ . | singularize | title }}</h4>
+            </div>
+          </a>
+          {{ end }}
+        </div>
+      </div>

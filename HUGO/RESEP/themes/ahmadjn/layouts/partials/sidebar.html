@@ -1,0 +1,18 @@
+<div class="hidden lg:inline-block lg:w-1/4 h-full sticky top-0 my-6 mt-20">
+	{{ partial "related-posts.html" . }}
+
+	<div
+		class="text-left text-white bg-orens -ml-3 mt-6 mb-1 px-4 py-1 text-lg font-semibold leading-loose rounded-r-2xl">
+		<h3>Recipes Menu :</h3>
+	</div>
+	{{ range site.Params.mainSections }}
+	<a href="/{{ . | singularize | lower }}">
+		<button
+			class="-ml-1 text-left text-white bg-hijau hover:bg-biru px-4 py-1 text-lg rounded-r-full leading-loose mb-1 shadow-inner transition duration-500 ease-in-out transform hover:translate-x-2 hover:scale-110">
+			<h4>{{ . | singularize | title }}</h4>
+		</button>
+	</a>
+	<br>
+	{{ end }}
+
+</div>

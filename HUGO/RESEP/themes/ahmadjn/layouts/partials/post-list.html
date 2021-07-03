@@ -1,0 +1,49 @@
+<div class="container flex justify-center">
+    <div class="w-full my-6 bg-gray-100 border shadow-lg z-10">
+        <div class="p-5 text-center m-3">
+            <h1 class="text-4xl font-extrabold text-merah">
+                Resep Masakan Khas Indonesia
+            </h1>
+            <hr class="my-3" />
+            <h2 class="text-xl font-bold text-hijau">
+                Cek Ribuan Aneka Macam Ide Resep Masakan dan Makanan/Minuman Khas Indonesia yang Enak Lezat Nikmat!
+            </h2>
+        </div>
+
+        <div class="lg:mx-40">
+            <div class="flex justify-center flex-wrap border bg-gray-200 m-8 p-4 rounded-lg shadow-inner">
+                {{ range site.Params.mainSections }}
+                <a href="/{{ . | singularize | lower }}">
+                    <button
+                        class="text-white font-medium bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded-lg leading-loose mx-1 mb-1 shadow transition duration-500 ease-in-out transform hover:translate-2 hover:scale-110">
+                        #{{ . | singularize | title }}
+                    </button>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-4 my-3 p-2">
+            {{ range (.Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) 9).Pages }}
+            <div
+                class="border-2 border-hijau bg-gradient-to-r from-hijau to-blue-500 hover:from-merah hover:to-orens bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-outline">
+                <div class="h-64 overflow-hidden">
+                    <a href="{{ .Permalink }}">
+                        <img src='{{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ .Params.Image}}{{end}}'
+                            alt='{{ .Title | markdownify }}'
+                            class="object-cover h-64 w-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-125" />
+                    </a>
+                </div>
+                <div class="p-4 text-center text-lg font-semibold text-white hover:text-biru overflow-hidden">
+                    <h2>
+                        <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+                    </h2>
+                </div>
+            </div>
+            {{- end -}}
+        </div>
+
+        {{ partial "pagination.html" . }}
+
+    </div>
+</div>

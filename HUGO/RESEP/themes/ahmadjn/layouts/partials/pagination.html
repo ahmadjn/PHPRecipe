@@ -1,0 +1,73 @@
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    {{ $pag := $.Paginator }}{{ if gt $pag.TotalPages 1 }}
+    <div class="flex-1 flex justify-between sm:hidden">
+        <a href="#"
+            class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+            Previous
+        </a>
+        <a href="#"
+            class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+            Next
+        </a>
+    </div>
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-center">
+        <div>
+            <nav class="relative z-0 inline-flex shadow-sm">{{ with $pag.First }}
+                <a href="{{ .URL }}"
+                    class="relative inline-flex items-center px-2 py-2 mr-2 rounded-l-full border border-biru bg-white text-lg leading-5 font-bold text-biru hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                    aria-label="Previous">
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                    </svg>
+                </a>{{ end }}
+                <a href="{{ if $pag.HasPrev }}{{ $pag.Prev.URL }}{{ end }}"
+                    class="mr-2 relative inline-flex items-center px-2 py-2 border border-biru bg-white text-lg leading-5 font-bold text-biru hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                    aria-label="Previous">
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+                {{ $.Scratch.Set "__paginator.ellipsed" false }}{{ range $pag.Pagers }}{{ $right := sub .TotalPages .PageNumber }}{{ $showNumber := or (le .PageNumber 3) (eq $right 0) }}{{ $showNumber := or $showNumber (and (gt .PageNumber (sub $pag.PageNumber 2)) (lt .PageNumber (add $pag.PageNumber 2))) }}{{ if $showNumber }}{{ $.Scratch.Set "__paginator.ellipsed" false }}{{ $.Scratch.Set "__paginator.shouldEllipse" false }}{{ else }}{{ $.Scratch.Set "__paginator.shouldEllipse" (not ($.Scratch.Get "__paginator.ellipsed") ) }}{{ $.Scratch.Set "__paginator.ellipsed" true }}{{ end }}{{ if $showNumber }}
+
+                {{ if eq . $pag }}{{ end }}
+                <a href="{{ .URL }}"
+                    class="-ml-px relative inline-flex items-center px-4 py-2 border border-biru bg-white text-lg leading-5 font-bold text-biru hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                    {{ .PageNumber }}
+                </a>
+                {{ else if ($.Scratch.Get "__paginator.shouldEllipse") }}
+                <span
+                    class="-ml-px relative inline-flex items-center px-4 py-2 border border-biru bg-white text-lg leading-5 font-bold text-biru">
+                    ...
+                </span>
+                {{ end }}{{ end }}
+
+                {{ if not $pag.HasNext }}{{ end }}
+                <a href="{{ if $pag.HasNext }}{{ $pag.Next.URL }}{{ end }}"
+                    class="ml-2 relative inline-flex items-center px-2 py-2 border border-biru bg-white text-lg leading-5 font-bold text-biru hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                    aria-label="Next">
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+                {{ with $pag.Last }}
+                <a href="{{ .URL }}"
+                    class="relative inline-flex items-center px-2 py-2 ml-2 rounded-r-full border border-biru bg-white text-lg leading-5 font-bold text-biru hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                    aria-label="Next">
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                    </svg>
+                </a>
+                {{ end }}
+            </nav>
+            {{ end }}
+        </div>
+    </div>
+</div>

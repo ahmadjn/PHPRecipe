@@ -1,0 +1,40 @@
+<div class="grid md:grid-cols-2 gap-10 mt-6 p-2 shadow-inner bg-gray-300">
+    {{with .PrevInSection}}
+    <div class="border-2 rounded-l-full text-right bg-merah text-white hover:bg-orens overflow-hidden shadow">
+        <a href="{{ .Permalink }}">
+            <div
+                class="text-right text-white bg-merah hover:bg-orens px-4 py-1 text-lg font-extrabold leading-loose shadow-inner">
+                Previous Recipe
+            </div>
+            <div class="h-64 overflow-hidden">
+                <img class="object-cover h-64 w-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-125"
+                    src="{{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ .Params.Image}}{{end}}"
+                    alt="{{ .Title | markdownify }}">
+            </div>
+            <div class="pl-20 pt-2 pr-2 pb-2 font-semibold overflow-hidden">
+                <h3>{{ .Title | markdownify }}</h3>
+            </div>
+        </a>
+    </div>
+    {{end}}
+
+    {{with .NextInSection}}
+    <div
+        class="border-2 text-white text-left bg-hijau hover:bg-biru font-semibold rounded-r-full overflow-hidden shadow">
+        <a href="{{ .Permalink }}">
+            <div class="text-left px-4 py-1 text-lg leading-loose shadow-inner">
+                Next Recipe
+            </div>
+            <div class="h-64 overflow-hidden">
+                <img class="object-cover h-64 w-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-125"
+                    src="{{ if eq .Params.Image "" }}https://placeholder.pics/svg/320x160{{else}}{{ .Params.Image}}{{end}}"
+                    alt="{{ .Title | markdownify }}">
+            </div>
+            <div class="pr-20 pt-2 pl-2 pb-2 overflow-hidden">
+                <h3>{{ .Title | markdownify }}</h3>
+            </div>
+        </a>
+    </div>
+    {{end}}
+
+</div>

@@ -1,0 +1,14 @@
+<!--letakkan kode histats dan kode ads universal (seperti social bar adsterra) di bawah baris ini-->
+<script>
+  function downloadJSAtOnload() {
+    var d = document.createElement("script");
+    (d.src =
+      "https://cdn.statically.io/gh/ahmadjn/histats/master/resep.min.js"),
+      document.body.appendChild(d);
+  }
+  window.addEventListener
+    ? window.addEventListener("load", downloadJSAtOnload, !1)
+    : window.attachEvent
+    ? window.attachEvent("onload", downloadJSAtOnload)
+    : (window.onload = downloadJSAtOnload);
+</script>
