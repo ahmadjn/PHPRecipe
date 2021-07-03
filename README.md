@@ -5,7 +5,7 @@ PHPRecipe is PHP Scraper and Parser Recipes Scheme for Recipes Site like Allreci
 
 ## Installation
 
-Download this Repo Package, Unzip and Run this command below in Terminal from PHPRecipe folder.
+Download this Repo Package ("src" folder), Unzip and Run this command below in Terminal from PHPRecipe folder.
 
 ```bash
 php resep.php
