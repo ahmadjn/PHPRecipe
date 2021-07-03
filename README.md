@@ -1,6 +1,6 @@
-# PHPRecipes
+# PHPRecipe
 
-PHPRecipes is PHP Scraper and Parser Recipes Scheme for Recipes Site like Allrecipes.com and Food.com with Cache Feature. Output data files is JSON Formatted that contains Recipe Name, Recipe Image, Ingredients, Instruction and Review. 
+PHPRecipe is PHP Scraper and Parser Recipes Scheme for Recipes Site like Allrecipes.com and Food.com with Cache Feature. Output data files is JSON Formatted that contains Recipe Name, Recipe Image, Ingredients, Instruction and Review. 
 ### Current Cache Files = 76.068 Files(Recipes) for Parser and Export.
 
 ## Installation
